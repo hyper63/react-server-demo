@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "react": "https://cdn.skypack.dev/react?dts",
+    "react-nil": "https://cdn.skypack.dev/react-nil?dts",
+    "opine": "https://deno.land/x/opine@1.1.0/mod.ts"
+  }
+}
