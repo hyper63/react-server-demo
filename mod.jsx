@@ -1,35 +1,20 @@
-import React, { useState } from "react"
-import { render } from "react-nil"
-import { App, Request, Listen } from './hyper.js'
+import React, { useState, useEffect } from 'react'
+import { render } from 'react-nil'
+import { App, Request, Listen } from './zap.js'
 
-function hello(req, res) {
-  res.send("Hello World")
-}
-
-function page2(req, res) {
-  res.send("page2")
+const Hello = ({req, res}) => {
+  res.json({hello: 'world'})
+  return null
 }
 
 
 render(
   <App>
-    <Request method="get" path="/" handler={hello} />
-    <Request method="get" path="/2" handler={page2} />
-    <Listen port={3001} />
+    <Request path="/">
+      <Hello />
+    </Request>
+    <Listen port={3000} />
   </App>
 )
 
-/*
- * <App>
- *   <Request path="/">
- *      <Hello />
- *   </Request>
- *   <Listen port={3001} />
- * </App>
- *
- * function Hello({req, res}) {
- *   res.send('Hello World')
- *   return null
- * }
- */
 

@@ -11,8 +11,8 @@ export function App(props) {
   })
 }
 
-export function Request(props) {
-  props.app[props.method](props.path, props.handler)
+export function Request({app, method="get", path, handler}) {
+  app[method](path, handler)
   return null
 }
 

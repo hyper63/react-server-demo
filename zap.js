@@ -1,4 +1,5 @@
 import React from 'react'
+import { render } from 'react-nil'
 import opine from "opine"
 
 export function App(props) {
@@ -12,15 +13,18 @@ export function App(props) {
 }
 
 export function Request({app, method="get", path="/", children}) {
-  return React.Children.map(children, 
+  
+  React.Children.map(children, 
     child => {
       if (React.isValidElement(child)) {
-        return React.cloneElement(child, { 
-          handler: fn => app[method](path, fn)
+        app[method](path, (req, res) => {
+          const component = React.cloneElement(child, { req, res })
+          render(component)
         })
       }
       return child
     })
+  return null
 }
 
 export function Listen(props) {
